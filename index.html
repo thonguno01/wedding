@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gia Khánh &amp; Quỳnh Anh — Thiệp Cưới</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700&family=Inter:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<canvas id="petal-canvas"></canvas>
+<canvas id="dust-canvas"></canvas>
+
+<!-- ============ INTRO ============ -->
+<div id="intro">
+    <div id="invite-card">
+        <div class="pattern-corner tl"></div>
+        <div class="pattern-corner br"></div>
+
+        <div class="badge-emblem" id="badge">
+            <svg viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="27" fill="none" stroke="#7A0C14" stroke-width="1.4"/>
+                <circle cx="30" cy="30" r="21" fill="none" stroke="#7A0C14" stroke-width="1"/>
+                <text x="30" y="38" text-anchor="middle" font-size="22" font-family="Libre Baskerville, serif" fill="#7A0C14">囍</text>
+            </svg>
+        </div>
+
+        <!-- Tên, ngày mời, "Thân mời" được render bởi Render.renderIntro() (render.js) -->
+        <h1 class="invite-names" id="names"></h1>
+
+        <div class="divider-row" id="divider">
+            <span class="line"></span>
+            <span class="glyph">❀</span>
+            <span class="line"></span>
+        </div>
+
+        <div class="invite-date" id="date"></div>
+        <div class="invite-than-moi" id="thanmoi"></div>
+
+        <button id="open-btn">Mở thiệp</button>
+    </div>
+
+    <div class="seal-bottom">
+        <div class="glyphs">囍 囍 囍</div>
+    </div>
+</div>
+
+<!-- ============ AUDIO ============ -->
+<audio id="bg-music" loop preload="auto">
+    <source src="./assets/audio/beautiful-in-white.mp3" type="audio/mpeg">
+</audio>
+
+<div id="music-toggle" title="Nhạc nền">
+    <svg class="icon-play" viewBox="0 0 24 24">
+        <rect x="4" y="10" width="3" height="6" rx="1"/>
+        <rect x="10.5" y="6" width="3" height="14" rx="1"/>
+        <rect x="17" y="9" width="3" height="8" rx="1"/>
+    </svg>
+    <svg class="icon-pause" viewBox="0 0 24 24">
+        <path d="M6 5h4v14H6zM14 5h4v14h-4z"/>
+    </svg>
+</div>
+
+<!-- ============ CONTENT ============ -->
+<div id="content">
+
+    <!-- ===== SECTION 1 ===== -->
+    <section id="section-1">
+        <div class="s1-banner">
+            <div class="s1-welcome" data-reveal>Welcome To Our Wedding</div>
+
+            <!-- Tên + vai trò cô dâu chú rể được render bởi Render.renderSection1() -->
+            <div class="s1-names-row" data-reveal-scale>
+                <div class="s1-side">
+                    <div class="s1-role"></div>
+                    <div class="s1-name"></div>
+                </div>
+                <div class="s1-emblem">
+                    <svg viewBox="0 0 60 60">
+                        <text x="30" y="40" text-anchor="middle" font-size="45" font-family="Libre Baskerville, serif"  fill="#F3D98B">囍</text>
+                    </svg>
+                </div>
+                <div class="s1-side">
+                    <div class="s1-role"></div>
+                    <div class="s1-name"></div>
+                </div>
+            </div>
+            <div class="s1-tagline" data-reveal>
+                <svg viewBox="0 0 300 60" class="tagline-svg">
+                    <path id="archPath" d="M 20,55 A 130,130 0 0 1 280,55" fill="none"/>
+                    <text font-size="13" letter-spacing="4" fill="#F3D98B">
+                        <textPath href="#archPath" startOffset="50%" text-anchor="middle"></textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="s1-photo-wrap" data-reveal-scale>
+            <div class="s1-photo-arch">
+                <img src="" alt="">
+            </div>
+        </div>
+
+        <div class="s1-info-banner" data-reveal-left>Thông Tin Lễ Cưới</div>
+
+        <!-- Thông tin cha mẹ hai bên được render bởi Render.renderSection1() -->
+        <div class="s1-parents-row">
+            <div class="s1-parents-col" data-reveal-left>
+                <div class="s1-parents-label"></div>
+                <div class="s1-parents-name"></div>
+                <div class="s1-parents-name"></div>
+                <div class="s1-parents-addr"></div>
+            </div>
+            <div class="s1-parents-divider"></div>
+            <div class="s1-parents-col" data-reveal-right>
+                <div class="s1-parents-label"></div>
+                <div class="s1-parents-name"></div>
+                <div class="s1-parents-name"></div>
+                <div class="s1-parents-addr"></div>
+            </div>
+        </div>
+    </section>
+    <section class="content-wrap">
+        <div class="content-eyebrow" data-reveal-scale>
+            <p>SAVE THE DATE</p>
+        </div>
+
+        <!-- Khối "save the date" được render bởi Render.renderSaveTheDate() -->
+        <div class="couple-block" data-reveal-scale>
+            <h2 class="content-title"></h2>
+            <div class="couple-divider">❦</div>
+            <h2 class="content-title"></h2>
+        </div>
+        <div class="content-divider" data-reveal-line></div>
+        <div class="ceremony-block" data-reveal-flip>
+            <div class="ceremony-label"></div>
+            <div class="ceremony-place"></div>
+            <div class="ceremony-time"></div>
+        </div>
+        <div class="content-divider" data-reveal-line></div>
+        <div class="date-card" data-reveal-pop>
+            <div class="weekday"></div>
+            <div class="day"></div>
+            <div class="month"></div>
+            <div class="year"></div>
+            <div class="lunar"></div>
+        </div>
+        <div class="content-divider" data-reveal-line></div>
+        <div class="countdown-title" data-reveal>
+            Còn lại
+        </div>
+        <div class="countdown" data-reveal-pop>
+            <div class="count-item">
+                <div class="number" id="cd-day">00</div>
+                <div class="text">Ngày</div>
+            </div>
+            <div class="count-item">
+                <div class="number" id="cd-hour">00</div>
+                <div class="text">Giờ</div>
+            </div>
+            <div class="count-item">
+                <div class="number" id="cd-minute">00</div>
+                <div class="text">Phút</div>
+            </div>
+            <div class="count-item">
+                <div class="number" id="cd-second">00</div>
+                <div class="text">Giây</div>
+            </div>
+        </div>
+
+        <div class="content-divider" data-reveal-line></div>
+
+        <!-- Địa điểm tổ chức được render bởi Render.renderLocation() -->
+        <div class="location-block" data-reveal-mask>
+
+            <div class="location-title"></div>
+
+            <div class="location-name"></div>
+
+            <div class="map-card">
+
+                <iframe
+                        src=""
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+            </div>
+
+            <div class="location-address"></div>
+
+            <a href="" target="_blank" class="btn-map">
+                📍 Chỉ đường
+            </a>
+
+        </div>
+
+        <div class="content-divider" data-reveal-line></div>
+
+    </section>
+    <section id="album">
+
+        <div class="section-header" data-reveal>
+
+            <div class="section-bg-title">
+                OUR MEMORIES
+            </div>
+
+            <div class="section-banner">
+
+                <div class="section-subtitle">
+                    OUR MEMORIES
+                </div>
+
+                <h2 class="section-title">
+                    Album Ảnh Cưới
+                </h2>
+
+                <div class="section-line">
+
+                    <span></span>
+
+                    <svg viewBox="0 0 50 50">
+                        <path d="M25 10
+                             C30 4 40 6 40 17
+                             C40 28 25 39 25 39
+                             C25 39 10 28 10 17
+                             C10 6 20 4 25 10Z"
+                              fill="#D8B36A"/>
+                    </svg>
+
+                    <span></span>
+
+                </div>
+
+            </div>
+
+            <p class="section-desc">
+                "Mỗi khoảnh khắc đều là<br>
+                một kỷ niệm đáng nhớ."
+            </p>
+
+        </div>
+
+        <!-- Album: danh sách ảnh được render bởi Render.renderGallery() -->
+        <div class="gallery"></div>
+
+    </section>
+
+    <section id="timeline">
+        <!-- Header -->
+        <div class="section-header" data-reveal>
+            <div class="section-bg-title">WEDDING TIMELINE</div>
+            <div class="section-banner">
+                <div class="section-subtitle">WEDDING TIMELINE</div>
+                <h2 class="section-title">Lịch Trình Ngày Cưới</h2>
+                <div class="section-line">
+                    <span></span>
+                    <svg viewBox="0 0 50 50">
+                        <path d="M25 10
+                             C30 4 40 6 40 17
+                             C40 28 25 39 25 39
+                             C25 39 10 28 10 17
+                             C10 6 20 4 25 10Z"
+                              fill="#D8B36A"/>
+                    </svg>
+                    <span></span>
+                </div>
+            </div>
+            <p class="section-desc">"Hành trình của một ngày hạnh phúc."</p>
+        </div>
+
+        <!-- Các mốc lịch trình được render bởi Render.renderTimeline() -->
+        <div class="timeline"></div>
+    </section>
+
+
+    <section id="envelope-section">
+        <div class="envelope-eyebrow" data-reveal>Phong Bao Mừng Cưới</div>
+
+        <div class="envelope-box" id="envelopeOpenBtn" data-reveal-scale>
+            <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="envGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#9A1018"/>
+                        <stop offset="100%" stop-color="#6E0A12"/>
+                    </linearGradient>
+                </defs>
+                <rect x="6" y="6" width="188" height="268" rx="14" fill="url(#envGrad)"/>
+                <path d="M6 20 Q100 100 194 20" fill="none" stroke="#D8B36A" stroke-width="2" opacity="0.7"/>
+                <!-- corner ornaments -->
+                <path d="M20 26 h18 M20 26 v18" stroke="#D8B36A" stroke-width="2" fill="none"/>
+                <path d="M180 26 h-18 M180 26 v18" stroke="#D8B36A" stroke-width="2" fill="none"/>
+                <path d="M20 254 h18 M20 254 v-18" stroke="#D8B36A" stroke-width="2" fill="none"/>
+                <path d="M180 254 h-18 M180 254 v-18" stroke="#D8B36A" stroke-width="2" fill="none"/>
+                <circle cx="100" cy="150" r="46" fill="none" stroke="#D8B36A" stroke-width="2"/>
+                <text x="100" y="166" text-anchor="middle" font-size="50" font-family="Libre Baskerville, serif" fill="#D8B36A">囍</text>
+            </svg>
+        </div>
+
+        <div class="envelope-hint" data-reveal>Nhấn vào phong bao để mở</div>
+    </section>
+
+
+    <section class="pb-5" id="wishes">
+
+        <div class="section-header" data-reveal>
+
+            <div class="section-bg-title">
+                BEST WISHES
+            </div>
+
+            <div class="section-banner">
+
+                <div class="section-subtitle">
+                    BEST WISHES
+                </div>
+
+                <h2 class="section-title">
+                    Gửi Lời Chúc
+                </h2>
+
+                <div class="section-line">
+                    <span></span>
+                    <svg viewBox="0 0 50 50">
+                        <path d="M25 10 C30 4 40 6 40 17 C40 28 25 39 25 39 C25 39 10 28 10 17 C10 6 20 4 25 10Z" fill="#D8B36A"/>
+                    </svg>
+                    <span></span>
+                </div>
+
+            </div>
+
+            <p class="section-desc">
+                "Một lời chúc nhỏ một niềm vui lớn."
+            </p>
+
+        </div>
+
+        <form id="wishForm" class="wish-form" data-reveal>
+
+            <div class="form-group">
+                <label>Họ và tên</label>
+                <input type="text" id="name" placeholder="Nhập họ tên của bạn">
+            </div>
+
+            <div class="form-group">
+                <label>Bạn sẽ tham dự?</label>
+
+                <div class="attend-group">
+                    <label>
+                        <input type="radio" name="attend" value="Có tham dự" checked>
+                        Có tham dự
+                    </label>
+
+                    <label>
+                        <input type="radio" name="attend" value="Không tham dự">
+                        Không tham dự
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Lời chúc</label>
+                <textarea id="message" rows="5" placeholder="Viết lời chúc..."></textarea>
+            </div>
+
+            <button type="submit" class="wish-btn">
+                GỬI LỜI CHÚC
+            </button>
+
+        </form>
+
+        <div class="wish-count" data-reveal>
+            ❤ <span id="wishTotal">0</span> lời chúc đã được gửi
+        </div>
+
+        <!-- Danh sách lời chúc được render bởi Render.renderWishList() -->
+        <div id="wishList" class="wish-list"></div>
+
+    </section>
+
+
+
+</div>
+<!-- Envelope Modal -->
+<div class="envelope-modal-overlay" id="envelopeModal">
+    <div class="envelope-modal">
+        <button class="envelope-modal-close" id="envelopeCloseBtn">✕</button>
+
+        <div class="envelope-modal-thanks">Cảm ơn tấm lòng của bạn!</div>
+        <h3 class="envelope-modal-title">♥ Lì xì mừng cưới ♥</h3>
+        <p class="envelope-modal-desc">
+            Sự hiện diện và lời chúc của bạn<br>
+            là niềm hạnh phúc lớn lao của chúng tôi.
+        </p>
+
+        <div class="envelope-modal-divider"><span></span>♥<span></span></div>
+
+        <div class="envelope-modal-qr-label">QUÉT MÃ QR ĐỂ CHUYỂN KHOẢN</div>
+
+        <div class="envelope-qr-frame">
+            <img id="envelopeQrImg" src="" alt="Mã QR chuyển khoản">
+        </div>
+
+        <!-- Thông tin ngân hàng + QR được render bởi Render.renderEnvelope() -->
+        <div class="envelope-bank-info">
+            <div class="envelope-bank-row">
+                <span class="k">🏦 Ngân hàng</span>
+                <span class="v" id="bankNameDisplay"></span>
+            </div>
+            <div class="envelope-bank-row">
+                <span class="k">👤 Chủ tài khoản</span>
+                <span class="v" id="bankOwnerDisplay"></span>
+            </div>
+            <div class="envelope-bank-row">
+                <span class="k">💳 Số tài khoản</span>
+                <span class="v" id="bankNumberDisplay"></span>
+            </div>
+            <div class="envelope-bank-row">
+                <span class="k">🎁 Nội dung</span>
+                <span class="v" id="bankNoteDisplay"></span>
+            </div>
+        </div>
+
+        <div class="envelope-modal-footer">Trân trọng cảm ơn! ♥</div>
+    </div>
+</div>
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- 1) Dữ liệu / cấu hình -->
+<script src="./assets/js/config.js"></script>
+<!-- 2) Các hàm render dữ liệu từ config ra giao diện -->
+<script src="./assets/js/render.js"></script>
+<!-- 3) Xử lý sự kiện, animation, gọi API -->
+<script src="./assets/js/main.js"></script>
+
+</body>
+</html>
