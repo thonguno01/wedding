@@ -34,16 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             x: Math.random() * petalCanvas.width,
             y: -20 - Math.random() * 300,
-            r: 5 + Math.random() * 9,
-            speedY: (0.4 + Math.random() * 0.8),
+
+            size: 0.3 + Math.random() * 0.7,
+
+            speedY: 0.4 + Math.random() * 0.8,
             speedX: (Math.random() - 0.5) * 0.6,
+
             rot: Math.random() * Math.PI * 2,
             rotSpeed: (Math.random() - 0.5) * 0.02,
-            sway: Math.random() * 2 * Math.PI,
+
+            sway: Math.random() * Math.PI * 2,
             swaySpeed: 0.01 + Math.random() * 0.02,
+
             blur: Math.random() * 1.5,
-            opacity: 0.5 + Math.random() * 0.5,
-            color: Math.random() > 0.5 ? '#E6B8B8' : '#D8B36A'
+
+            // giảm độ đậm
+            opacity: 0.25 + Math.random() * 0.35,
+
+            // màu pastel nhẹ
+            color: [
+                '#F3C6C6', // hồng phấn
+                '#E8B4B8', // dusty rose
+                '#F5D7A1', // champagne
+                '#D9A7A7'  // hồng nude
+            ][Math.floor(Math.random() * 4)]
         };
     }
 
@@ -53,14 +67,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawPetal(p) {
         pctx.save();
+
         pctx.translate(p.x, p.y);
         pctx.rotate(p.rot);
+        pctx.scale(p.size, p.size);
+
         pctx.beginPath();
-        pctx.moveTo(0, 0);
-        pctx.bezierCurveTo(10, -15, 25, -10, 18, 5);
-        pctx.bezierCurveTo(10, 15, 0, 10, 0, 0);
+        pctx.moveTo(0, 10);
+        pctx.globalAlpha = p.opacity;
+        pctx.bezierCurveTo(
+            -25, -10,
+            -20, -35,
+            0, -20
+        );
+
+        pctx.bezierCurveTo(
+            20, -35,
+            25, -10,
+            0, 10
+        );
+
+        pctx.closePath();
+
         pctx.fillStyle = p.color;
         pctx.fill();
+
         pctx.restore();
     }
 

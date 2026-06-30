@@ -324,7 +324,7 @@ html, body {
 }
 
 .content-divider {
-    width: 60px;
+    width: 30px;
     height: 1px;
     background: #8C0F18;
     margin: 30px auto;
@@ -365,7 +365,6 @@ html, body {
 [data-reveal-pop]   { opacity: 0; transform: scale(.4) translateY(20px); }
 [data-reveal-flip]  { opacity: 0; transform: perspective(700px) rotateX(-65deg); transform-origin: top center; }
 [data-reveal-mask]  { opacity: 0; clip-path: inset(0 0 100% 0); }
-[data-reveal-line]  { opacity: 1; width: 0 !important; }
 [data-reveal-rotate-l] { opacity: 0; transform: rotate(-9deg) translateY(40px) scale(.85); }
 [data-reveal-rotate-r] { opacity: 0; transform: rotate(9deg) translateY(40px) scale(.85); }
 
